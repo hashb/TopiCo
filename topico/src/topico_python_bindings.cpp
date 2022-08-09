@@ -156,18 +156,19 @@ py::array_t<double> bb_retime(py::array_t<double> &traj, py::array_t<double> &sc
             A_min[idx_dim + num_dim * idx_wayp] = acc_lims_arr(idx_dim, 0);
             J_max[idx_dim + num_dim * idx_wayp] = rtInf;
             J_min[idx_dim + num_dim * idx_wayp] = -rtInf;
-            b_sync_V[idx_dim + num_dim * idx_wayp] = false;
-            b_sync_A[idx_dim + num_dim * idx_wayp] = false;
-            b_sync_J[idx_dim + num_dim * idx_wayp] = false;
-            b_sync_W[idx_dim + num_dim * idx_wayp] = true;
+            b_sync_V[idx_dim + num_dim * idx_wayp] = true;
+            b_sync_A[idx_dim + num_dim * idx_wayp] = true;
             if (idx_dim == 6)
             {
-                b_sync_W[idx_dim + num_dim * idx_wayp] = sync_arr(idx_wayp);
+                b_sync_V[idx_dim + num_dim * idx_wayp] = sync_arr(idx_wayp);
+                b_sync_A[idx_dim + num_dim * idx_wayp] = sync_arr(idx_wayp);
             }
             else
             {
                 b_rotate[idx_dim + num_dim * idx_wayp] = false;
             }
+            b_sync_J[idx_dim + num_dim * idx_wayp] = false;
+            b_sync_W[idx_dim + num_dim * idx_wayp] = true;
             b_hard_V_lim[idx_dim + num_dim * idx_wayp] = false;
             b_catch_up[idx_dim + num_dim * idx_wayp] = false;
             direction[idx_dim + num_dim * idx_wayp] = 0.0;
