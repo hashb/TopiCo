@@ -208,7 +208,34 @@ src/xzlarf.cpp
 src/xzlarfg.cpp
 src/xzlartg.cpp)
 
+set(CMAKE_POSITION_INDEPENDENT_CODE ON)
+
 ## Declare a C++ library
 add_library(${PROJECT_NAME}
   ${SOURCES}
 )
+
+
+find_package(PythonLibs REQUIRED)
+
+include(FetchContent)
+
+FetchContent_Declare(
+    pybind11-src
+    GIT_REPOSITORY https://github.com/pybind/pybind11.git
+    GIT_TAG        v2.5.0
+)
+
+FetchContent_MakeAvailable(pybind11-src)
+
+pybind11_add_module(pytopico SHARED ${LIB_SOURCE_FILES} ${LIB_HEADER_FILES} src/topico_python_bindings.cpp)
+target_include_directories(pytopico
+PRIVATE ${PYBIND11_INCLUDE_DIR}  # from project CMakeLists.txt
+PRIVATE ${pybind11_INCLUDE_DIR}  # from pybind11Config
+PRIVATE ${PYTHON_INCLUDE_DIRS})
+target_link_libraries(pytopico PRIVATE
+${PYTHON_LIBRARIES}
+${CMAKE_THREAD_LIBS_INIT} topico)
+
+install(TARGETS pytopico
+				DESTINATION ${PYTHON_SITE_PACKAGES})
