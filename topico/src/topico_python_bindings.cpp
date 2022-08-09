@@ -131,12 +131,12 @@ py::array_t<double> bb_retime(py::array_t<double> &traj, py::array_t<double> &sc
             Waypoints[(4 + num_dim * 1) + num_dim * 5 * idx_wayp] = 0.0; // Waypoint Z Velocity
             Waypoints[(5 + num_dim * 1) + num_dim * 5 * idx_wayp] = 0.0; // Waypoint Z Velocity
 
-            Waypoints[(0 + num_dim * 2) + num_dim * 5 * idx_wayp] = 5.0; // Waypoint X Acceleration
-            Waypoints[(1 + num_dim * 2) + num_dim * 5 * idx_wayp] = 5.0; // Waypoint Y Acceleration
-            Waypoints[(2 + num_dim * 2) + num_dim * 5 * idx_wayp] = 5.0; // Waypoint Z Acceleration
-            Waypoints[(3 + num_dim * 2) + num_dim * 5 * idx_wayp] = 5.0; // Waypoint Z Acceleration
-            Waypoints[(4 + num_dim * 2) + num_dim * 5 * idx_wayp] = 5.0; // Waypoint Z Acceleration
-            Waypoints[(5 + num_dim * 2) + num_dim * 5 * idx_wayp] = 5.0; // Waypoint Z Acceleration
+            Waypoints[(0 + num_dim * 2) + num_dim * 5 * idx_wayp] = 45.0; // Waypoint X Acceleration
+            Waypoints[(1 + num_dim * 2) + num_dim * 5 * idx_wayp] = 45.0; // Waypoint Y Acceleration
+            Waypoints[(2 + num_dim * 2) + num_dim * 5 * idx_wayp] = 45.0; // Waypoint Z Acceleration
+            Waypoints[(3 + num_dim * 2) + num_dim * 5 * idx_wayp] = 45.0; // Waypoint Z Acceleration
+            Waypoints[(4 + num_dim * 2) + num_dim * 5 * idx_wayp] = 45.0; // Waypoint Z Acceleration
+            Waypoints[(5 + num_dim * 2) + num_dim * 5 * idx_wayp] = 45.0; // Waypoint Z Acceleration
         }
 
         Waypoints[(0 + num_dim * 3) + num_dim * 5 * idx_wayp] = 0.0; // Waypoint X Movement Velocity
@@ -165,7 +165,7 @@ py::array_t<double> bb_retime(py::array_t<double> &traj, py::array_t<double> &sc
             J_min[idx_dim + num_dim * idx_wayp] = -rtInf;
             b_sync_V[idx_dim + num_dim * idx_wayp] = true;
             b_sync_A[idx_dim + num_dim * idx_wayp] = true;
-            if (idx_dim == 6)
+            if (idx_dim == 6 && idx_wayp != num_wayp - 1)
             {
                 b_sync_V[idx_dim + num_dim * idx_wayp] = sync_arr(idx_wayp);
                 b_sync_A[idx_dim + num_dim * idx_wayp] = sync_arr(idx_wayp);
