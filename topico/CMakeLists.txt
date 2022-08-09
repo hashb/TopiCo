@@ -216,8 +216,8 @@ add_library(${PROJECT_NAME}
 )
 
 
-find_package(PythonLibs REQUIRED)
-
+find_package(PythonInterp REQUIRED)
+find_package(PythonLibs "${PYTHON_VERSION_MAJOR}.${PYTHON_VERSION_MINOR}" REQUIRED )
 include(FetchContent)
 
 FetchContent_Declare(
