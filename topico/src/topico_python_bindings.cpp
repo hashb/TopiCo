@@ -115,6 +115,16 @@ py::array_t<double> bb_retime(py::array_t<double> &traj, py::array_t<double> &sc
         Waypoints[(4 + num_dim * 1) + num_dim * 5 * idx_wayp] = rtNaNF; // Waypoint Z Velocity
         Waypoints[(5 + num_dim * 1) + num_dim * 5 * idx_wayp] = rtNaNF; // Waypoint Z Velocity
 
+        if (idx_wayp == num_wayp - 1)
+        {
+            Waypoints[(0 + num_dim * 1) + num_dim * 5 * idx_wayp] = 0.0; // Waypoint X Velocity
+            Waypoints[(1 + num_dim * 1) + num_dim * 5 * idx_wayp] = 0.0; // Waypoint Y Velocity
+            Waypoints[(2 + num_dim * 1) + num_dim * 5 * idx_wayp] = 0.0; // Waypoint Z Velocity
+            Waypoints[(3 + num_dim * 1) + num_dim * 5 * idx_wayp] = 0.0; // Waypoint Z Velocity
+            Waypoints[(4 + num_dim * 1) + num_dim * 5 * idx_wayp] = 0.0; // Waypoint Z Velocity
+            Waypoints[(5 + num_dim * 1) + num_dim * 5 * idx_wayp] = 0.0; // Waypoint Z Velocity
+        }
+
         Waypoints[(0 + num_dim * 2) + num_dim * 5 * idx_wayp] = rtNaNF; // Waypoint X Acceleration
         Waypoints[(1 + num_dim * 2) + num_dim * 5 * idx_wayp] = rtNaNF; // Waypoint Y Acceleration
         Waypoints[(2 + num_dim * 2) + num_dim * 5 * idx_wayp] = rtNaNF; // Waypoint Z Acceleration
